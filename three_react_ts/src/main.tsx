@@ -10,8 +10,10 @@ import ErrorPage from "./error-page.tsx"
 import Root,{loader as rootLoader} from "./routes/route.tsx"
 import Index from "./routes/index";
 import Contact from "./routes/contact"
-import ThreePage from "./routes/three.tsx"
+import ThreePage, {loader as threeLoader} from "./routes/three.tsx"
 import WebGLPage from "./routes/webglPage.tsx"
+import OglPage from "./routes/ogl.tsx"
+import UITest from "./routes/UITest.tsx"
 
 
 const router = createBrowserRouter([
@@ -26,12 +28,12 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
           { index: true, element: <Index /> },
-          {
-            path: "contacts/:contactId",
-            element: <Contact />,
-            // loader: contactLoader,
-            // action: contactAction,
-          },
+          // {
+          //   path: "contacts/:contactId",
+          //   element: <Contact />,
+          //   // loader: contactLoader,
+          //   // action: contactAction,
+          // },
           // {
           //   path: "/contacts/:contactId/edit",
           //   element: <EditContact />,
@@ -43,11 +45,17 @@ const router = createBrowserRouter([
           //   action: destroyAction,
           // },
           {
-            path: "three",
+            path: "three/:type",
             element: <ThreePage />,
-            // loader: contactLoader,
+            loader: threeLoader,
             // action: contactAction,
           },
+          // {
+          //   path: "three/",
+          //   element: <ThreePage />,
+          //   // loader: contactLoader,
+          //   // action: contactAction,
+          // },
           {
             path: "webgl",
             element: <WebGLPage />,
@@ -63,6 +71,18 @@ const router = createBrowserRouter([
           {
             path: "shader",
             element: <WebGLPage />,
+            // loader: contactLoader,
+            // action: contactAction,
+          },
+          {
+            path: "ogl",
+            element: <OglPage />,
+            // loader: contactLoader,
+            // action: contactAction,
+          },
+          {
+            path: "test",
+            element: <UITest />,
             // loader: contactLoader,
             // action: contactAction,
           },

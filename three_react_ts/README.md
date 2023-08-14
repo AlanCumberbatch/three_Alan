@@ -90,3 +90,31 @@ If you are developing a production application, we recommend updating the config
 
 - Three
   - npm install three
+
+- OGL（Minimal WebGL library.）----have lots of great demos
+  - npm i ogl
+
+- lil-gui : for create control html box easier for ThreeJS
+  - npm i lil-gui
+
+- AntDesign
+  - npm install antd @ant-design/icons --save
+  - About using custom svg as Ant icon ---- 还没生效呢
+    - npm install @ant-design/icons-svg --save
+    - transfer command: npx @ant-design/icons-svg@2 create-from-iconfont --script-url=<icon-font-js-url> custom-icon.svg > CustomIcon.js
+
+
+# Three Demos
+
+- Official Demo sort:
+
+   - 基础几何体和材质：这类示例展示了如何创建和渲染基本的几何体（例如立方体、球体、平面）以及不同类型的材质（例如颜色、纹理）。
+   - 光照和阴影：这类示例演示了如何添加光照效果以及生成阴影，从而使场景更加逼真。
+   - 相机和视角：这些示例涵盖了如何调整相机的位置、方向和视角，以及如何实现相机的运动和缩放。
+   - 动画和变换：这类示例展示了如何创建动画效果，包括物体的旋转、平移、缩放等变换。
+   - 粒子系统：这些示例演示了如何创建粒子效果，例如雨滴、雪花、火焰等。
+   - 交互和控制：这类示例展示了如何在 Three.js 场景中添加交互元素，例如点击、拖动、控制物体等。
+   - 加载外部模型和纹理：这些示例演示了如何从外部文件加载 3D 模型和纹理，以及如何应用它们到场景中。
+   - 后期处理和特效：这类示例涵盖了如何应用后期处理和特效，例如模糊、色彩调整、阴影等。
+   - 虚拟现实和增强现实：这些示例展示了如何在 Three.js 中创建虚拟现实（VR）和增强现实（AR）体验。
+   - 高级示例和项目：这些示例涵盖了一些更复杂的场景和项目，例如模拟自然现象、建筑可视化、游戏等。

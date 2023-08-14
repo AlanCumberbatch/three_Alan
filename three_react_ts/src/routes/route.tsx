@@ -10,11 +10,14 @@ import {
 } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import SideMenuAnt from '@/UIComponent/SideMenuAnt.tsx';
+import {LinkGroup, LinkType} from "@/shared/types.ts"
+
 import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon, CubeIcon } from "@heroicons/react/24/outline"
-import webGPULogo from '@/assets/webGPU.svg';
-import webGLLogo from '@/assets/webgl.svg';
+import WebGPULogo from '@/assets/webGPU.svg';
+import WebGLLogo from '@/assets/webgl.svg';
 import ThreeLogo from '@/assets/three.svg';
-import shaderLogo from '@/assets/shader.svg';
+import ShaderLogo from '@/assets/shader.svg';
 import { color } from "framer-motion";
 // import {
 //   HomeModernIcon,
@@ -48,13 +51,67 @@ const Root = () => {
   let routers:Array<{}> = [
     {
       id: "three",
-      name:"three.js"
+      name: "three.js",
+      icon: <ThreeLogo />,
     },
     {
       id: "webgl",
-      name:"webGL"
+      name: "webGL",
+      icon: <WebGLLogo/>
     },
   ];// [{id: 'vjdfn9f', createdAt: 1691474990684}, ... ]
+
+  let routers_2:LinkGroup = [
+    {
+      id: "three",
+      name: "three.js",
+      icon: <ThreeLogo />,
+      children: [
+        {
+          name:"point",
+          value:"point"
+        },
+        {
+          name:"line",
+          value:"line"
+        },
+        {
+          name:"plane",
+          value:"plane"
+        },
+        {
+          name:"volume",
+          value:"volume"
+        },
+        {
+          name:"camera",
+          value:"camera"
+        },
+      ]
+    },
+    {
+      id: "ogl",
+      name: "ogl",
+      icon: <WebGLLogo/>
+    },
+    {
+      id: "webgl",
+      name: "webGL",
+      icon: <WebGLLogo/>
+    },
+    {
+      id: "webgpu",
+      name: "webGPU",
+      icon: <WebGPULogo/>
+    },
+    {
+      id: "shader",
+      name: "shader",
+      icon: <ShaderLogo/>
+    },
+  ];
+
+
   // const { routers } = useLoaderData();
   // const { contacts, q } = useLoaderData();
   // const navigation = useNavigation();
@@ -78,7 +135,8 @@ const Root = () => {
   return (
     // <div>
     <div className="flex flex-row w-screen h-screen">
-      <div id="sidebar" className="absolute min-h-fit py-3" >
+      {/* <div id="sidebar" className="absolute" > */}
+      <div  className="absolute" >
         {/* <div>
           <Form id="search-form" role="search">
             <input
@@ -105,66 +163,8 @@ const Root = () => {
             <button type="submit">New</button>
           </Form>
         </div> */}
-        <nav>
-          {/* {routers.length ? (
-            <ul>
-              {routers.map((router) => (
-                <li key={router.id} >
-                  <NavLink
-                    to={`${router.id}`}
-                    className={({ isActive, isPending }) =>
-                      isActive
-                        ? "active"
-                        : isPending
-                        ? "pending"
-                          : ""
 
-                    }
-                  >
-                      {router.name ? (
-                        <>
-                        {router.id == "three"
-                          ? <CubeIcon className="w-12 h-8" />
-                          : router.id == "webgl"
-                            ?
-
-                        }
-                        </>
-                      ) : (
-                        <i>No Name</i>
-                      )}{" "}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>
-              <i>No contacts</i>
-            </p>
-          )} */}
-          <ul className=" min-w-fit w-96">
-            <li key="three" >
-              <NavLink to="three" >
-                <img src={ThreeLogo} className="w-12 h-8 text-red-500 fill-slate-500" alt="" />
-              </NavLink>
-            </li>
-            <li key="webgl" >
-              <NavLink to="webgl" >
-                <img src={webGLLogo} className="w-12 h-8" alt="" />
-              </NavLink>
-            </li>
-            <li key="webgpu" >
-              <NavLink to="webgpu" >
-                <img src={webGPULogo} className="w-12 h-8" alt="" />
-              </NavLink>
-            </li>
-            <li key="shader" >
-              <NavLink to="shader" >
-                <img src={shaderLogo} className="w-12 h-8" alt="" />
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
+        <SideMenuAnt links={routers_2} />
 
         {/* <div className="rounded-md flex justify-end p-0">
           <div className="text-white bg-black p-1 rounded-[50%] m-0" onClick={siderDrawer}>
