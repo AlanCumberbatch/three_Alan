@@ -87,6 +87,14 @@ const Root = () => {
           name:"camera",
           value:"camera"
         },
+        {
+          name:"heart",
+          value:"heart"
+        },
+        {
+          name:"font",
+          value:"font"
+        },
       ]
     },
     {
@@ -164,7 +172,7 @@ const Root = () => {
           </Form>
         </div> */}
 
-        <SideMenuAnt links={routers_2} />
+        {/* <SideMenuAnt links={routers_2} /> */}
 
         {/* <div className="rounded-md flex justify-end p-0">
           <div className="text-white bg-black p-1 rounded-[50%] m-0" onClick={siderDrawer}>

@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import {demoPoint, demoLine, demoPlane, demoBox, demoSphere} from '@/utils/three.ts'
-import { demoThreeCamera } from '@/utils/threeOfficalExample/camera.ts'
+import {demoPoint, demoLine, demoPlane, demoBox, demoSphere, demoHeart, demoFont} from '@/utils/three.ts'
+import { demoThreeCamera,doubleCamera } from '@/utils/threeOfficalExample/camera.ts'
 
 
 export async function loader({ request }) {
@@ -31,6 +31,7 @@ const ThreePage = (props: Props) => {
     let camera, renderer;
     if (type == "camera") {
       let { c, r } = demoThreeCamera(scene, sceneRef);
+      // let { c, r } = doubleCamera(scene, sceneRef);
       camera = c;
       renderer = r;
     } else {
@@ -59,6 +60,7 @@ const ThreePage = (props: Props) => {
           depthSegments : Integer
         )
       */
+      let mesh;
       if (type == "point") {
         demoPoint(scene);
       } else if (type == "line") {
@@ -74,6 +76,10 @@ const ThreePage = (props: Props) => {
         // 2.Sphere
         demoSphere(scene);
 
+      } else if (type == "heart") {
+        mesh = demoHeart(scene)
+      } else if (type == "font") {
+        mesh = demoFont(scene)
       } else if (type == "1111") {
 
       }
@@ -88,6 +94,10 @@ const ThreePage = (props: Props) => {
         requestAnimationFrame(animate);
 
         // 可以在这里让模型动起来
+        if (type == "heart") {
+          var time = (Date.now() - mesh.startTime) / 1000;
+          mesh.uniforms.iGlobalTime.value = time;
+        }
 
         controls.update();
 
@@ -95,7 +105,28 @@ const ThreePage = (props: Props) => {
       };
 
       animate();
+
+      window.addEventListener('resize', onWindowResize);
+      function onWindowResize() {// can not be a arrow function
+
+        renderer.setSize( window.innerWidth, window.innerHeight );
+
+        camera.aspect = window.innerWidth/window.innerHeight;
+        camera.updateProjectionMatrix();
+      }
     }
+
+    // const devicePerformance = getDevicePerformance();
+    // console.log('%c [ devicePerformance ]-47', 'font-size:13px; background:pink; color:#bf2c9f;', devicePerformance)
+    // // 根据性能设置不同的渲染参数
+    // // const renderer = new THREE.WebGLRenderer();
+    // if (devicePerformance < 0.5) {
+    //   // 低性能设备，降低渲染质量
+    //   renderer.setPixelRatio(0.5);
+    // } else {
+    //   // 高性能设备，提高渲染质量
+    //   renderer.setPixelRatio(2);
+    // }
 
     return () => {
       sceneRef.current?.removeChild(renderer.domElement);
